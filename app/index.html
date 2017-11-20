@@ -2,14 +2,23 @@
 <html>
 <head>
   <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 <body>
-
-<form action="/result" method="POST">
-  Shape Input:<br><input type="text" name="input" style="width:1400px" value="[(Compose (Scale (Vector 2 2)) (Translate (Vector 5 5)), Circle, [FillColour (Colour 255 0 0), StrokeWidth 2])]"><br>
-  <br><input type="submit" value="DRAW!!!">
-</form>
-<br>Input is in the form: [(Transform, Shape, [Style])]</br>
-<br>e.g. [(Compose (Scale (Vector 2 2)) (Translate (Vector 5 5)), Circle, [FillColour (Colour 255 0 0), StrokeWidth 2])]</br>
+<div class="container">
+	<div class="jumbotron text-center">
+		<h3>Scotty Shape Webapp</h3>
+		<p>Use the form below to submit your shape for drawing!</p>
+		<br>
+		<h3>Example</h3>
+		<p>[(Compose (Scale (Vector 2 2)) (Translate (Vector 2.5 2.5)), Circle, [FillCol (Colour 123 123 123), StrokeWidth 1.1, StrokeCol (Colour 50 50 50)])]</p>
+	</div>
+	<form action='/result' method='POST'>
+		<h4>Shape Input:</h4><br>
+		<input type='text' name='input' style='width:1110px; font-size:18px' placeholder='DSL input goes here in the form [(Transform, Shape, [Style])]'>
+		<br><br>
+		<input class="btn btn-primary" type='submit' value='Submit'>
+	</form>
+</div>
 </body>
 </html>

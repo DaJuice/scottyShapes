@@ -44,18 +44,13 @@ parseTransList trans = catMaybes (parseTransformation trans)
 
 -- Need to define a function to parse our definition of a transformation and turn it into
 -- a transformation that the SVG can use. Because many different transformations can be applied
--- to a shape (through composition), need to return an array of those tranformations.
+-- to a shape (through composition), need to return a list of those tranformations.
 parseTransformation :: Transform -> [Maybe BlazeSvg.Attribute]
 parseTransformation Identity = [Nothing]
 parseTransformation t = [parseTranslate t]
 parseTransformation t = [parseScale t]
 parseTransformation t = [parseRotate t]
 parseTransformation (Compose trans1 trans2) = parseTransformation trans1 ++ parseTransformation trans2
--- .transform is the combinator for the transform attribute
--- parseTransformation (Translate (Vector x y)) = [Just (SvgAttr.transform $ BlazeSvg.translate x y)]
--- parseTransformation (Scale (Vector x y)) = [Just (SvgAttr.transform $ BlazeSvg.scale x y)]
--- parseTransformation (Rotate (Matrix (Vector a b) (Vector d c))) = [Just (SvgAttr.transform $ BlazeSvg.rotate (acos a))]
--- parseTransformation (Compose trans1 trans2) = parseTransformation trans1 ++ parseTransformation trans2
 
 -- Function to take a translate transformation and turn it into an SVG translation 
 parseTranslate :: Transform -> Maybe BlazeSvg.Attribute
