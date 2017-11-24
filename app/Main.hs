@@ -14,8 +14,9 @@ main = scotty 3000 $ do
     get "/" $ do 
         file "app/index.html"
 
-    --get "/result" $ do
-        --userInput <- param "input"
-        --let drawing = read userInput :: [(Transform, Shape, [Style])] -- Cast the read to be of the "Drawing" type
+    post "/result" $ do
+        userInput <- param "input"
+        let drawing = read userInput :: Drawing -- Cast the read to be of the "Drawing" type
+
         -- renderSvg is a function from the SVG library which produces a native Haskell string
-        -- html $ DataLazy.pack $ renderSvg $ drawingToSVG $ drawing
+        html $ DataLazy.pack $ renderSvg $ createSVG $ drawing

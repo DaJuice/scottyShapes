@@ -1,6 +1,7 @@
 
 module SVGInterpreter
     (
+        createSVG
     )
     where
 
@@ -19,16 +20,16 @@ import qualified Text.Blaze.Svg11.Attributes as A
 -- ****************************************************************************
 
 createSVG :: Drawing -> S.Svg
-createSVG drawing = S.docTypeSvg ! A.version "1.1" ! A.width "1400" ! A.height "1400" $ do combineSVGs $ blegh2 drawing
+createSVG drawing = S.docTypeSvg ! A.version "1.1" ! A.width "1400" ! A.height "1400" $ do combineSVGs $ svgList drawing
 
 combineSVGs :: [S.Svg] -> S.Svg
 combineSVGs svgs = mconcat svgs
 
-blegh2 :: Drawing -> [S.Svg]
-blegh2 drawing = map blegh drawing
-	where
-		blegh :: (Transform, Shape, [Style]) -> S.Svg
-		blegh (trans, shape, styles) = applyStyles (applyTrans shape trans) styles
+svgList :: Drawing -> [S.Svg]
+svgList drawing = map render drawing
+    where
+        render :: (Transform, Shape, [Style]) -> S.Svg
+        render (trans, shape, styles) = applyStyles (applyTrans shape trans) styles
 
 applyTrans :: Shape -> Transform -> S.Svg
 applyTrans shape trans = (!) (createSVGShape shape) (createSVGTransform trans)

@@ -27,6 +27,7 @@ data Style = None
     | FillCol Colour
     deriving (Show, Read)
 
+-- Added in some nice record syntax to allow accessing the x/y coords of the vect
 data Vector = Vector
     { x :: Double
     , y :: Double
@@ -57,4 +58,4 @@ t0 <+> t1 = Compose t0 t1
 
 -- Drawings
 -- Need to alter a Drawing to take some list of Stylings so that they can be applied to the SVG
-type Drawing = [(Transform,Shape, [Style])]
+type Drawing = [(Transform, Shape, [Style])]
