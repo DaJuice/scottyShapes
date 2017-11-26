@@ -1,11 +1,16 @@
 name:          scottyShapes
-version:       0.0.0
+version:       1.0.0
 cabal-version: >= 1.8
 build-type:    Simple
+category:      Web
+license:       BSD3
+description:   A webapp that allows the generation of SVG images according to a defined DSL
+author:        Oisin Johnston
+license-file:  LICENSE
 
 executable          scottyShapes
     hs-source-dirs: ./app
-    main-is:        Main.hs
+    main-is:        Main.lhs
     other-modules:  Shapes
                   , SVGInterpreter
     ghc-options:    -Wall -threaded -O2 -rtsopts -with-rtsopts=-N
@@ -15,3 +20,7 @@ executable          scottyShapes
                   , blaze-svg
                   , blaze-html
                   , text
+
+source-repository head
+    type:        git
+    location:    https://github.com/DaJuice/scottyShapes.git
